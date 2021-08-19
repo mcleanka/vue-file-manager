@@ -4,5 +4,6 @@ module.exports = {
     optimization: {
       splitChunks: false
     }
-  }
+  },
+  runtimeCompiler: true
 };

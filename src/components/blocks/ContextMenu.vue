@@ -1,34 +1,39 @@
 <template>
-    <div ref="contextMenu"
-         v-if="menuVisible"
-         v-bind:style="menuStyle"
-         v-on:blur="closeMenu"
-         class="fm-context-menu"
-         tabindex="-1">
-        <ul v-for="(group, index) in menu"
-            v-bind:key="`g-${index}`"
-            class="list-unstyled">
-            <li v-for="(item, index) in group"
-                v-bind:key="`i-${index}`"
-                v-if="showMenuItem(item.name)"
-                v-on:click="menuAction(item.name)">
-                <i class="fa-fw" v-bind:class="item.icon"/>
-                {{ lang.contextMenu[item.name] }}
-            </li>
-        </ul>
-    </div>
+  <div
+    ref="contextMenu"
+    v-if="menuVisible"
+    v-bind:style="menuStyle"
+    v-on:blur="closeMenu"
+    class="fm-context-menu"
+    tabindex="-1"
+  >
+    <ul
+      v-for="(group, index) in menu"
+      v-bind:key="`g-${index}`"
+      class="list-unstyled"
+    >
+      <li
+        v-for="(item, index) in group"
+        v-bind:key="`i-${index}`"
+        v-on:click="menuAction(item.name)"
+      >
+        <i class="fa-fw" v-bind:class="item.icon" />
+        {{ lang.contextMenu[item.name] }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 /* eslint-disable no-param-reassign */
-import EventBus from '../../eventBus';
-import translate from '../../mixins/translate';
-import contextMenu from './mixins/contextMenu';
-import contextMenuRules from './mixins/contextMenuRules';
-import contextMenuActions from './mixins/contextMenuActions';
+import EventBus from "../../eventBus";
+import translate from "../../mixins/translate";
+import contextMenu from "./mixins/contextMenu";
+import contextMenuRules from "./mixins/contextMenuRules";
+import contextMenuActions from "./mixins/contextMenuActions";
 
 export default {
-  name: 'ContextMenu',
+  name: "ContextMenu",
   mixins: [translate, contextMenu, contextMenuRules, contextMenuActions],
   data() {
     return {
@@ -44,7 +49,7 @@ export default {
      * Listen events
      * 'contextMenu'
      */
-    EventBus.$on('contextMenu', (event) => this.showMenu(event));
+    EventBus.$on("contextMenu", (event) => this.showMenu(event));
   },
   computed: {
     /**
@@ -94,8 +99,10 @@ export default {
       let menuX = left - elX;
 
       // calculate max X and Y coordinates
-      const maxY = elY + (el.offsetHeight - this.$refs.contextMenu.offsetHeight - 25);
-      const maxX = elX + (el.offsetWidth - this.$refs.contextMenu.offsetWidth - 25);
+      const maxY =
+        elY + (el.offsetHeight - this.$refs.contextMenu.offsetHeight - 25);
+      const maxX =
+        elX + (el.offsetWidth - this.$refs.contextMenu.offsetWidth - 25);
 
       if (top > maxY) menuY = maxY - elY;
       if (left > maxX) menuX = maxX - elX;
@@ -141,36 +148,36 @@ export default {
 </script>
 
 <style lang="scss">
-    .fm-context-menu {
-        position: absolute;
-        z-index: 9997;
-        background-color: white;
-        box-shadow: 3px 2px 5px gray;
-        border-radius: 5px;
+.fm-context-menu {
+  position: absolute;
+  z-index: 9997;
+  background-color: white;
+  box-shadow: 3px 2px 5px gray;
+  border-radius: 5px;
 
-        &:focus {
-            outline: none;
-        }
+  &:focus {
+    outline: none;
+  }
 
-        .list-unstyled {
-            margin-bottom: 0;
-            border-bottom: 1px solid rgba(0,0,0,.125);
-        }
+  .list-unstyled {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
 
-        ul > li {
-            padding: 0.4rem 1rem;
-        }
+  ul > li {
+    padding: 0.4rem 1rem;
+  }
 
-        ul > li:not(.disabled) {
-            cursor: pointer;
+  ul > li:not(.disabled) {
+    cursor: pointer;
 
-            &:hover {
-                background-color: #f8f9fa;
-            }
-
-            i {
-                padding-right: 2rem;
-            }
-        }
+    &:hover {
+      background-color: #f8f9fa;
     }
+
+    i {
+      padding-right: 2rem;
+    }
+  }
+}
 </style>

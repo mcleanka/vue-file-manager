@@ -1,13 +1,18 @@
 import 'core-js/stable';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'regenerator-runtime/runtime';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Vue from 'vue';
+import Vue from 'vue'
 import Vuex from 'vuex';
+import VueRouter from 'vue-router'
+
 // store
 import fm from './store';
+
 // App
-import App from './FileManager.vue';
+import FileManager from './FileManager.vue';
+import FileViewer from './FileViewer.vue';
+
+Vue.use(VueRouter)
+
 
 Vue.use(Vuex);
 
@@ -19,7 +24,23 @@ const store = new Vuex.Store({
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production';
 
+const NotFound = { template: '<p>Page not found</p>' }
+
+const routes = {
+  '/file-manager-master': FileManager,
+  '/all-downloads': FileViewer,
+};
+
 window.fm = new Vue({
+  el: '#fm',
   store,
-  render: (h) => h(App),
-}).$mount('#fm');
+  data: {
+    currentRoute: window.location.pathname
+  },
+  computed: {
+    ViewComponent() {
+      return routes[this.currentRoute] || NotFound
+    }
+  },
+  render(h) { return h(this.ViewComponent) }
+})

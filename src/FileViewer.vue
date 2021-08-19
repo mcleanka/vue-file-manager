@@ -1,52 +1,22 @@
 <template>
-  <div
-    class="fm d-flex flex-column"
-    v-bind:class="{ 'fm-full-screen': fullScreen }"
-  >
-    <navbar />
+  <div class="fm d-flex flex-column">
     <div class="fm-body">
       <notification />
       <context-menu />
       <modal v-if="showModal" />
-      <template v-if="windowsConfig === 1">
-        <left-manager class="col" manager="left" />
-      </template>
-      <template v-else-if="windowsConfig === 2">
-        <folder-tree class="col-4 col-md-3" />
-        <left-manager class="col-8 col-md-9" manager="left" />
-      </template>
-      <template v-else-if="windowsConfig === 3">
-        <left-manager
-          class="col-12 col-sm-6"
-          manager="left"
-          v-on:click.native="selectManager('left')"
-          v-on:contextmenu.native="selectManager('left')"
-        >
-        </left-manager>
-        <right-manager
-          class="col-12 col-sm-6"
-          manager="right"
-          v-on:click.native="selectManager('right')"
-          v-on:contextmenu.native="selectManager('right')"
-        >
-        </right-manager>
-      </template>
+      <left-manager class="p-0 m-0 p0 m0 col-12 col-md-12" manager="left" />
     </div>
     <info-block />
   </div>
 </template>
 
 <script>
-/* eslint-disable import/no-duplicates, no-param-reassign */
 import { mapState } from "vuex";
 // Axios
 import HTTP from "./http/axios";
 import EventBus from "./eventBus";
 // Components
-import Navbar from "./components/blocks/Navbar.vue";
-import FolderTree from "./components/tree/FolderTree.vue";
 import LeftManager from "./components/manager/Manager.vue";
-import RightManager from "./components/manager/Manager.vue";
 import Modal from "./components/modals/Modal.vue";
 import InfoBlock from "./components/blocks/InfoBlock.vue";
 import ContextMenu from "./components/blocks/ContextMenu.vue";
@@ -55,13 +25,10 @@ import Notification from "./components/blocks/Notification.vue";
 import translate from "./mixins/translate";
 
 export default {
-  name: "FileManager",
+  name: "FileViewer",
   mixins: [translate],
   components: {
-    Navbar,
-    FolderTree,
     LeftManager,
-    RightManager,
     Modal,
     InfoBlock,
     ContextMenu,
