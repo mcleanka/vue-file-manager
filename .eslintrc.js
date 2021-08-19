@@ -9,7 +9,9 @@ module.exports = {
     '@vue/airbnb',
   ],
   rules: {
-    "quotes": ["error", "single"],
+    "operator-linebreak": ["error", "before", { "overrides": { "=": "ignore", "?": "ignore", ":": "ignore" } }],
+    "quotes": ["error", "double"],
+    "comma-dangle": ["error", "only-multiline"],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-param-reassign': [
