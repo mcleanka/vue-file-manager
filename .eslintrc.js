@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 module.exports = {
   root: true,
   env: {
@@ -8,6 +9,7 @@ module.exports = {
     '@vue/airbnb',
   ],
   rules: {
+    "quotes": ["error", "single"],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-param-reassign': [
