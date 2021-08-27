@@ -1,10 +1,6 @@
-# laravel-file-manager (Frontend)
+# Vue-file-manager (Frontend)
 
 > File manager for Laravel - Frontend - Vue.js 
-
-> Backend - Laravel 5 package - [alexusmai/laravel-file-manager](https://github.com/alexusmai/laravel-file-manager)
-
-![Laravel File Manager](https://raw.github.com/alexusmai/vue-laravel-file-manager/master/src/assets/laravel-file-manager.gif?raw=true)
 
 # v 2.4.0
 
