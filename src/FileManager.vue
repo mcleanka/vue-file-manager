@@ -251,7 +251,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~plyr/src/sass/plyr.scss";
+/* @import "~plyr/src/sass/plyr.scss"; */
 .fm {
   position: relative;
   height: 100%;
